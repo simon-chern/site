@@ -33,15 +33,29 @@ const leftSlide = document.querySelectorAll('.leftSlide');
 const rightSlide = document.querySelectorAll('.rightSlide');
 
 
-window.addEventListener('scroll', () => {
-    opacityElements.forEach(element => {
-        const scrollHeight = window.pageYOffset;
-        const height = element.getBoundingClientRect().top + scrollHeight;
-        if (scrollHeight < height) {
-            element.classList.add('show-opacity');
-        }
-    })
-})
+// window.addEventListener('scroll', () => {
+//     opacityElements.forEach(element => {
+//         const scrollHeight = window.pageYOffset;
+//         const height = element.getBoundingClientRect().height + scrollHeight;
+//         if (scrollHeight < height) {
+//             element.classList.add('show-opacity');
+//         }
+//     })
+// })
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-opacity");
+      }
+    });
+  },
+  { threshold: 0.5 }
+); 
+
+opacityElements.forEach((element) => {
+  observer.observe(element);
+});
 
 
 //questions 
