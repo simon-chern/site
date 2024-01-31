@@ -3,12 +3,13 @@ const toggleButton = document.querySelector(".nav-toggle")
 const links = document.querySelector('.links')
 const li = document.querySelectorAll('a')
 
-
+//nav toggle
 toggleButton.addEventListener('click', () => {
     toggleButton.classList.toggle("nav-toggle-clicked");
     links.classList.toggle("show-links");
 })
 
+//slidiing back the nav bar
 li.forEach(link => {
     link.addEventListener('click', () => {
         links.classList.remove('show-links');
@@ -16,6 +17,7 @@ li.forEach(link => {
     });
 });
 
+//button to the top
 const topLink = document.querySelector(".top-link");
 window.addEventListener("scroll", () => {
     const scrollHeight = window.pageYOffset;
@@ -25,7 +27,24 @@ window.addEventListener("scroll", () => {
         topLink.classList.remove("show-link");
     }
 })
+//opacity,sliding from left and from right on scrool that element would smoothly appear on the screen
+const opacityElements = document.querySelectorAll('.opacity');
+const leftSlide = document.querySelectorAll('.leftSlide');
+const rightSlide = document.querySelectorAll('.rightSlide');
 
+
+window.addEventListener('scroll', () => {
+    opacityElements.forEach(element => {
+        const scrollHeight = window.pageYOffset;
+        const height = element.getBoundingClientRect().top + scrollHeight;
+        if (scrollHeight < height) {
+            element.classList.add('show-opacity');
+        }
+    })
+})
+
+
+//questions 
 questions.forEach((question) => {
     const btn = question.querySelector(".question-btn");
     btn.addEventListener("click", ()=>{
