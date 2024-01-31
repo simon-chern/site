@@ -50,7 +50,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.5 }
+  { threshold: 1 }
 ); 
 
 opacityElements.forEach((element) => {
